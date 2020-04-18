@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-12" style="padding-left: 0;">
+        <div style="width: 100%;text-align: center;">
+            <h4 *ngIf="products; else: noProductsTitle">{{title}}</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" style="padding-left: 0;">
+            <div class="form-group">
+                <input id="productName" class="form-control" placeholder="Ürün Ara..." [(ngModel)]="filterString" />
+                <small *ngIf="filterString" id="emailHelp" class="form-text text-muted">Şu anda <strong>{{filterString}}</strong> adında ürün aradınız.</small>
+              </div>
+    </div>
+</div>
+<div class="row">
+     <!-- noProduct Template-->
+     <ng-template #noProductsTitle>
+        <div class="alert alert-secondary" style="border-radius: 0.5rem;" role="alert">
+            <h4>{{noProductTitle}}</h4>
+          </div>
+    </ng-template>
+      <!-- noProduct Template-->
+    <div *ngFor="let product of products | productFilter:filterString" class="card" style="width: 17.5rem;">
+        <img src="{{product.imageUrl}}" class="card-img-top" style="height: 185px;" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name | uppercase }} - {{product.price | currency:' ':false:'1.2-2'}} TL</h5>
+          <p class="card-text">{{product.description}}</p>
+          <a href="#" class="btn btn-primary">Sepete Ekle - <i class="fa fa-cart-plus" style="color: white;"></i></a>
+        </div>
+    </div>
+</div>

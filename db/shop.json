@@ -1,0 +1,13 @@
+{
+
+ "products":[
+    { "id": 1, "name": "NoteBook", "price": 3999, "categoryId": 1, "description": "Casper Nirvana", "imageUrl": "./assets/images/casper-nirvana.jpg" },
+    { "id": 2, "name": "Keyboard", "price": 545, "categoryId": 2, "description": "Logitech", "imageUrl": "./assets/images/logirach-keyboard.jpg" },
+    { "id": 3, "name": "NoteBook", "price": 3999, "categoryId": 1, "description": "Casper Nirvana", "imageUrl": "./assets/images/casper-nirvana.jpg" },
+    { "id": 4, "name": "Keyboard", "price": 545, "categoryId": 2, "description": "Logitech", "imageUrl": "./assets/images/logirach-keyboard.jpg" },
+    { "id": 5, "name": "NoteBook", "price": 3999, "categoryId": 1, "description": "Casper Nirvana", "imageUrl": "./assets/images/casper-nirvana.jpg" },
+    { "id": 6, "name": "Keyboard", "price": 545, "categoryId": 2, "description": "Logitech", "imageUrl": "./assets/images/logirach-keyboard.jpg" }],
+ "categories":[ 
+    {"id":1,"name":"Bilgisayar","categoryGroupId":1},
+    {"id":1,"name":"Çevre Bileşenleri","categoryGroupId":2}]
+}

@@ -14,6 +14,7 @@ export class CategoryComponent implements OnInit {
     {id:1,name:"Bilgisayar",categoryGroupId:1},
     {id:1,name:"Çevre Bileşenleri",categoryGroupId:2}
   ]
+  
   ngOnInit(): void {
   }
 

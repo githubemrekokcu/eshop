@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { product } from './product';
+import { AlertifyService } from '../services/alertify.service'
+import { HttpClient } from '@angular/common/http'
+
 
 @Component({
   selector: 'app-product',
@@ -8,21 +11,24 @@ import { product } from './product';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
-  title:String = "Bu Haftanın Ürünleri";
-  noProductTitle:String = "Bu Kategoride Ürün Bulunamadı!";
-  filterString = "";
-  products:product[] = [
-    {id:1,name:"NoteBook",price:3999,categoryId:1, description:"Casper Nirvana",imageUrl:"./assets/images/casper-nirvana.jpg"},
-    {id:2,name:"Keyboard",price:545,categoryId:2, description:"Logitech",imageUrl:"./assets/images/logirach-keyboard.jpg"},
-    {id:3,name:"NoteBook",price:3999,categoryId:1, description:"Casper Nirvana",imageUrl:"./assets/images/casper-nirvana.jpg"},
-    {id:4,name:"Keyboard",price:545,categoryId:2, description:"Logitech",imageUrl:"./assets/images/logirach-keyboard.jpg"},
-    {id:5,name:"NoteBook",price:3999,categoryId:1, description:"Casper Nirvana",imageUrl:"./assets/images/casper-nirvana.jpg"},
-    {id:6,name:"Keyboard",price:545,categoryId:2, description:"Logitech",imageUrl:"./assets/images/logirach-keyboard.jpg"},
-
-  ];
+  constructor(private alertifyService: AlertifyService, private http: HttpClient) { }
+  title: string = "Bu Haftanın Ürünleri";
+  noProductTitle: string = "Bu Kategoride Ürün Bulunamadı!";
+  filterString: string = "";
+  products: product[];
+  path:string = "http://localhost:3000/products"; 
 
   ngOnInit(): void {
+    this.http.get<product[]>(this.path).subscribe(data => {
+      this.products = data;
+    });
   }
 
+  addToCart(product: product) {
+    try {
+      this.alertifyService.succes(product.name + " Ürünü Sepete Eklendi"); 
+    } catch (error) {
+      this.alertifyService.error(product.name + " Ürünü Sepete Eklenemedi");
+    }
+  }
 }

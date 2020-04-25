@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { category } from './category';
+import { AlertifyService } from '../services/alertify.service'
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-category',
@@ -8,14 +10,14 @@ import { category } from './category';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private alertifyService: AlertifyService,private productService:CategoryService) { }
   title:string="Kategori Listesi";
-  categories:category[] = [
-    {id:1,name:"Bilgisayar",categoryGroupId:1},
-    {id:1,name:"Çevre Bileşenleri",categoryGroupId:2}
-  ]
+  categories:category[];
   
   ngOnInit(): void {
+    this.productService.getCategories().subscribe(data =>{
+      this.categories = data;
+    });
   }
 
 }
